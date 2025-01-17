@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Fonts */
+  --font-primary: 'Lato', sans-serif;
+  --font-heading: 'Raleway', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+  --font-highlight: 'Lora', serif;
+  --font-meta: 'Quicksand', sans-serif;
+
+  /* Dark Mode */
+  --color-text: #e0e0e0;
+  --color-muted: #b0b0b0;
+  --color-border: #2e2e2e;
+  --color-solid-bg: #1e1e1e;
+  --color-bg: linear-gradient(
+    60deg,
+    #0a0a0a 0%,
+    #141414e0 50%,
+    #121212 100%
+  );
+
+  --color-subtle: #1a1a1a;
+  --color-deep: #eaeaea;
+  --color-mid: #d6d6d6;
+  --color-shadow: #f5f5f5;
+}
+
+/* Light Mode */
+:root.light {
+  --color-text: #1a1a1a;
+  --color-muted: #4d4d4d;
+  --color-border: #d6d6d6;
+  --color-solid-bg: #1e1e1e;
+  --color-bg: linear-gradient(
+    60deg,
+    #f5f5f5 0%,
+    #eaeaead0 50%,
+    #dddddd 100%
+  );
+
+  --color-subtle: #eaeaea;
+  --color-deep: #1a1a1a;
+  --color-mid: #4d4d4d;
+  --color-shadow: #212121;
+}
+
+/* Global Styles */
+html {
+  height: 100%;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body);
+  background-color: var(--color-solid-bg);
+  color: var(--color-text);
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  pointer-events: none;
+  z-index: -1;
+
+  /* Default to solid background color for all browsers */
+  background: var(--color-solid-bg);
+}
+
+/* Gradient support for Chrome */
+@supports (-webkit-appearance:none) and (not (-moz-appearance:none)) {
+  #bg {
+    background: var(--color-bg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+}
