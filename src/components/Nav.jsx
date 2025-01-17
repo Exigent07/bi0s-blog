@@ -21,14 +21,20 @@ export default function Nav({
   ];
 
   return (
-    <nav className="fixed w-full h-[100px] flex items-center justify-center">
-      <div id="nav-width-limiter" className="w-[1400px] h-full flex items-center justify-around">
+    <nav className="fixed top-0 left-0 w-full h-[135px] text-text flex items-center justify-center font-primary z-50">
+      <div id="nav-width-limiter" className="w-[1400px] h-full flex items-center justify-between">
         <Link href="/" prefetch={true}>
-          <img src="/light-logo.png" height="125px" width="125px" alt="logo" />
+          <img 
+            className="relative bottom-1"
+            src="/light-logo.png" 
+            height="135px" 
+            width="135px" 
+            alt="logo" 
+          />
         </Link>
         <ul className="flex items-center justify-center">
           {navLinks.map((link) => (
-            <li key={link.href} className="mx-4">
+            <li key={link.href} className="mx-4 text-lg">
               <Link 
                 href={link.href}
                 prefetch={true}
@@ -38,13 +44,13 @@ export default function Nav({
             </li>
           ))}
         </ul>
-        <div className="nav-buttons flex items-center justify-center gap-4">
-          <ExtendedButton>
+        <div className="nav-buttons flex items-center justify-center gap-6">
+          <ExtendedButton className="m-2">
             <IoIosSearch
               className="text-3xl"
             />
           </ExtendedButton>
-          <ExtendedButton>
+          <ExtendedButton className="m-2">
             <CiSettings
               className="text-3xl"
             />
