@@ -11,7 +11,12 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@svgr/webpack": "^8.1.0",
+    "@tailwindcss/typography": "^0.5.16",
+    "gray-matter": "^4.0.3",
     "gsap": "^3.12.7",
+    "highlight.js": "^11.11.1",
+    "html-react-parser": "^5.2.2",
+    "marked": "^15.0.6",
     "next": "15.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

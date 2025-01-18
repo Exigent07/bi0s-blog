@@ -6,22 +6,18 @@ import Link from "next/link";
 import { usePathname } from 'next/navigation';
 
 export default function Nav({
-  smallClass = "text-sm",
-  mediumClass = "md:text-xl",
-  largeClass = "lg:text-3xl",
-  wrapperClass = "",
-  wrapperStyle = {},
+  className = "",
 }) {
   
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/categories", label: "Categories" },
-    { href: "/archive", label: "Archive" },
+    { href: "/archives", label: "Archives" },
     { href: "/tags", label: "Tags" }
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full h-[135px] text-text flex items-center justify-center font-primary z-50">
+    <nav className={`fixed top-0 left-0 w-full h-[135px] text-text flex items-center justify-center font-primary z-50 ${className}`}>
       <div id="nav-width-limiter" className="w-[1400px] h-full flex items-center justify-between">
         <Link href="/" prefetch={true}>
           <img 

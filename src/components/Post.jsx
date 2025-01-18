@@ -1,11 +1,12 @@
 import ExtendedButton from "./ExtendedButton";
 import Outline from "./Outline";
-import Read from "../../public/read.svg";
+import Read from "../svg/read.svg";
 import { GoPersonFill } from "react-icons/go";
 import { MdDateRange } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";
 import { FaHashtag } from "react-icons/fa";
 import SplitText from "@/utils/SplitText";
+import parse from 'html-react-parser';
 
 export default function Post({
   title = "No Title",
@@ -30,11 +31,11 @@ export default function Post({
     <Outline outlineColor="bg-border">
       <div className={`post-wrapper w-full h-full ${className}`}>
         <article
-          className={`w-full h-full flex items-stretch justify-center p-0.5 ${articleClass}`}
+          className={`w-full relative h-full flex items-stretch justify-center p-0.5 ${articleClass}`}
         >
-          <section className="post-content flex flex-col gap-4 p-8 pb-4 w-[85%] bg-subtle">
+          <section className="post-content flex flex-col gap-4 p-8 pb-4 w-[1145px] bg-subtle">
             <h2 className="text-4xl font-heading">{title}</h2>
-            <p className="text-lg font-body mb-3">{premise}</p>
+            <div className="text-lg font-body mb-3">{parse(premise)}</div>
             <ExtendedButton className="!w-[200px] flex items-center justify-evenly">
               <div className="split-container">
                 <SplitText
@@ -46,7 +47,7 @@ export default function Post({
             </ExtendedButton>
           </section>
 
-          <section className="post-metadata flex flex-col gap-2 p-4 w-[15%] bg-shadow text-muted text-sm">
+          <section className="post-metadata flex flex-col gap-2 p-4 w-[200px] bg-shadow text-muted text-sm">
             {metaItems.map((item, index) => (
               <div key={index} className="metadata-item">
                 <div className="flex items-center gap-2">
