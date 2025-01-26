@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Post from '@/components/Post';
+import ExtendedButton from "./ExtendedButton";
 
 export default function Pagination({ postsData }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -102,16 +103,16 @@ export default function Pagination({ postsData }) {
         
         <div className="flex transition-colors duration-300 flex-col items-center gap-4 max-w-[1400px] py-12">
           <div className="flex gap-4 transition-colors duration-300">
-            <button
-              className=""
+            <ExtendedButton
+              className="!w-[150px]"
               onClick={handlePrevious}
               disabled={currentPage === 1}
             >
               Previous
-            </button>
+            </ExtendedButton>
 
               {generatePageNumbers().map((pageNumber, index) => (
-                <button
+                <ExtendedButton
                   key={index}
                   className={`${pageNumber === currentPage ? '' : ''} ${pageNumber === '...' ? 'cursor-default' : ''}`}
                   onClick={() => {
@@ -121,16 +122,16 @@ export default function Pagination({ postsData }) {
                   }}
                 >
                   {pageNumber}
-                </button>
+                </ExtendedButton>
               ))}
 
-              <button
-                className=""
+              <ExtendedButton
+                className="!w-[150px]"
                 onClick={handleNext}
                 disabled={currentPage === totalPages}
               >
                 Next
-              </button>
+              </ExtendedButton>
           </div>
         </div>
       </main>

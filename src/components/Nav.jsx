@@ -1,13 +1,21 @@
 'use client';
+
 import ExtendedButton from "./ExtendedButton";
 import { IoIosSearch } from "react-icons/io";
 import { CiSettings } from "react-icons/ci";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from "react";
 
 export default function Nav({
   className = "",
 }) {
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    const currentTheme = document.documentElement.classList.contains("light") ? "light" : "dark";
+    setTheme(currentTheme);
+  }, []);
   
   const navLinks = [
     { href: "/", label: "Home" },
@@ -20,13 +28,15 @@ export default function Nav({
     <nav className={`fixed top-0 left-0 w-full h-[135px] text-text flex items-center justify-center font-primary z-50 ${className}`}>
       <div id="nav-width-limiter" className="w-[1400px] h-full flex items-center justify-between">
         <Link href="/" prefetch={true}>
-          <img 
-            className="relative bottom-1"
-            src="/light-logo.png" 
-            height="135px" 
-            width="135px" 
-            alt="logo" 
+          <img
+            draggable={false}
+            className={`relative select-none bottom-1 ${theme === "light" ? "filter brightness-0" : "filter brightness-100"}`}
+            src="/light-logo.png"
+            height="135px"
+            width="135px"
+            alt="logo"
           />
+
         </Link>
         <ul className="flex items-center justify-center">
           {navLinks.map((link) => (

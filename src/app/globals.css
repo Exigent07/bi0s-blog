@@ -91,3 +91,148 @@ body {
     background-size: 100% 100%;
   }
 }
+
+/* Blog / Post */
+.post {
+  line-height: 1.8;
+}
+
+.post h1, .post h2, .post h3, .post h4, .post h5, .post h6 {
+  font-family: var(--font-heading);
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  color: var(--color-deep);
+}
+
+.post h1 {
+  font-size: 2.25rem;
+}
+
+.post h2 {
+  font-size: 1.875rem;
+}
+
+.post h3 {
+  font-size: 1.5rem;
+}
+
+.post h4 {
+  font-size: 1.25rem;
+}
+
+.post h5 {
+  font-size: 1.125rem;
+}
+
+.post h6 {
+  font-size: 1rem;
+  color: var(--color-muted);
+}
+
+/* Paragraphs */
+.post p {
+  margin-bottom: 1rem;
+  color: var(--color-mid);
+}
+
+/* Blockquotes */
+.post blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  background: var(--color-subtle);
+  border-left: 4px solid var(--color-highlight);
+  color: var(--color-text);
+  font-family: var(--font-highlight);
+  font-style: italic;
+}
+
+/* Lists */
+.post ul, .post ol {
+  margin: 1rem 0 1rem 1.5rem;
+}
+
+.post ul li, .post ol li {
+  margin-bottom: 0.5rem;
+  color: var(--color-mid);
+}
+
+.post ul li::marker {
+  color: var(--color-muted);
+}
+
+.post ol li {
+  list-style: decimal;
+}
+
+.post pre {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--color-subtle);
+  color: var(--color-deep);
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.post code {
+  font-family: 'Source Code Pro', monospace;
+  background: var(--color-border);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  color: var(--color-deep);
+}
+
+.post pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.post a {
+  color: var(--color-highlight);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.post a:hover {
+  color: var(--color-mid);
+  text-decoration: underline;
+}
+
+.post img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1rem 0;
+  box-shadow: 0 4px 8px var(--color-shadow);
+}
+
+.post table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background: var(--color-subtle);
+}
+
+.post th, .post td {
+  border: 1px solid var(--color-border);
+  padding: 0.75rem;
+  text-align: left;
+  color: var(--color-text);
+}
+
+.post th {
+  background: var(--color-deep);
+  font-family: var(--font-meta);
+  font-weight: bold;
+}
+
+.post td {
+  background: var(--color-subtle);
+}
+
+/* Horizontal Rules */
+.post hr {
+  border: 0;
+  height: 1px;
+  background: var(--color-border);
+  margin: 2rem 0;
+}

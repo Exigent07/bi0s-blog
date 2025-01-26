@@ -34,8 +34,8 @@ export default function Post({
           className={`w-full relative h-full flex items-stretch justify-center p-0.5 ${articleClass}`}
         >
           <section className="post-content flex flex-col gap-4 p-8 pb-4 w-[1145px] bg-subtle">
-            <h2 className="text-4xl font-heading">{title}</h2>
-            <div className="text-lg font-body mb-3">{parse(premise)}</div>
+            <h2 className="text-4xl font-heading prose text-text">{title}</h2>
+            <div className="text-lg font-body mb-3 text-muted">{parse(premise)}</div>
             <ExtendedButton className="!w-[200px] flex items-center justify-evenly">
               <div className="split-container">
                 <SplitText
@@ -53,10 +53,10 @@ export default function Post({
                 <div className="flex items-center gap-2">
                   {item.icon}
                   <span className="font-meta">
-                    {Array.isArray(item.value) ? item.multiple : item.value}
+                    {(Array.isArray(item.value) && item.value.length > 1) ? item.multiple : item.value}
                   </span>
                 </div>
-                {Array.isArray(item.value) && (
+                {(Array.isArray(item.value) && item.value.length > 1) && (
                   <div className={`${item.multiple.toLowerCase()} mt-1`}>
                     {item.value.map((key, idx) => (
                       <span

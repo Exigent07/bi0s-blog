@@ -2,6 +2,7 @@ import matter from "gray-matter";
 import fs from "fs";
 import path from "path";
 import { marked } from "marked";
+import { log } from "console";
 
 const BASE_DIR = path.resolve(process.cwd(), "posts");
 
@@ -33,8 +34,10 @@ function readFile(filePath) {
             : new Date().toLocaleDateString('en-US', { day: '2-digit', month: 'long', year: 'numeric' }),
         updated: data.updated ? new Date(data.updated) : new Date(),
         categories: [
-            ...dirCategories,
-            ...(Array.isArray(data.categories) ? data.categories : [data.categories]).filter(Boolean)
+            ...new Set([
+                ...dirCategories,
+                ...(Array.isArray(data.categories) ? data.categories : [data.categories]).filter(Boolean),
+            ])
         ],
         tags: Array.isArray(data.tags) ? data.tags.map(tag => `#${tag.trim()}`) : [data.tags].filter(Boolean),
         author: data.author?.trim() || '',
@@ -47,6 +50,9 @@ function readFile(filePath) {
             depth: dirCategories.length
         }
     };
+
+    console.log(metadata.categories);
+    
 
     const tldrMatch = content.match(/(?:\*\*|)tl;dr(?:\*\*|)[\r\n\- ]*([\s\S]*?)<!--\s*more\s*-->/i);
     if (tldrMatch) {
@@ -67,8 +73,8 @@ function readFile(filePath) {
     return {
         ...metadata,
         path: urlPath,
-        full_source: fullPath,
-        asset_dir: hasAssetFolder ? assetFolder : null,
+        fullSource: fullPath,
+        assetDir: hasAssetFolder ? assetFolder : null,
         filename: path.basename(filePath, '.md'),
         raw: content
     };
@@ -108,7 +114,7 @@ function getPostsData() {
         }
     })
     .filter(Boolean)
-    .sort((a, b) => b.date - a.date);
+    .sort((a, b) => new Date(b.date) - new Date(a.date));;
 
     posts.forEach((post, index) => {
         post.prev = index > 0 ? posts[index - 1] : null;
@@ -135,8 +141,6 @@ function getPostsData() {
         categoryTree
     };
 }
-
-console.log(getPostsData());
 
 export {
     getPostsData,
