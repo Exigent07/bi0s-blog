@@ -13,7 +13,7 @@ export default function SortPosts({ categoryTree, posts, sort, onNavigation }) {
     return postsToRender.map((post, index) => (
       <Post
         key={index}
-        title={post.title}
+        title={post.post}
         premise={post.premise}
         meta={{
           author: post.author,
@@ -28,26 +28,23 @@ export default function SortPosts({ categoryTree, posts, sort, onNavigation }) {
 
   const getSubCategories = (category) => {
     if (!categoryTree[category]) return {};
-    return categoryTree[category].subcategories;
+    
+    const subCategories = categoryTree[category].subcategories;
+    const postsNotInSubCategories = categoryTree[category].posts.filter(post => {
+      return !Object.keys(subCategories).some(subCat => 
+        subCategories[subCat].posts.some(subPost => subPost.path === post.path)
+      );
+    });
+    
+    if (postsNotInSubCategories.length > 0) {
+      return {
+        ...subCategories,
+        Others: { posts: postsNotInSubCategories, subcategories: {} }
+      };
+    }
+    
+    return subCategories;
   };
-
-  if (sort === 'tags' && selectedCategory) {
-    return (
-      <div className="w-full">
-        <div className="mb-8 flex gap-4">
-          <ExtendedButton
-            onClick={() => setSelectedCategory(null)}
-            className="!w-auto px-4"
-          >
-            ← Back to Tags
-          </ExtendedButton>
-        </div>
-        <div className="grid grid-cols-1 gap-8">
-          {renderPosts(categoryTree[selectedCategory].posts)}
-        </div>
-      </div>
-    );
-  }
 
   if (selectedSubCategory) {
     const subCategoryPosts = selectedCategory === null ? [] :
@@ -70,7 +67,7 @@ export default function SortPosts({ categoryTree, posts, sort, onNavigation }) {
     );
   }
 
-  if (selectedCategory && sort !== 'tags') {
+  if (selectedCategory) {
     const subCategories = getSubCategories(selectedCategory);
     
     return (
