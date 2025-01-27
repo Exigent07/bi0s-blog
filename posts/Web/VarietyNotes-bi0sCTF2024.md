@@ -1,7 +1,9 @@
 ---
 title: Variety Notes - bi0sCTF 2024
 date: 2024-02-26 02:21:40
-author: Luc1f3r,Lu513n
+author: 
+- Luc1f3r
+- Lu513n
 author_url: https://twitter.com/Adithyaraj2515
 categories:
   - Web

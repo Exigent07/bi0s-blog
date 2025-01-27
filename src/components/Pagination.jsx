@@ -93,7 +93,8 @@ export default function Pagination({ postsData }) {
                       author: post.author,
                       date: post.date,
                       category: post.categories,
-                      tags: post.tags
+                      tags: post.tags,
+                      path: post.path
                     }}
                 />
             ))

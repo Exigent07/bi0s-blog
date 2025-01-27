@@ -7,6 +7,7 @@ import { BiCategory } from "react-icons/bi";
 import { FaHashtag } from "react-icons/fa";
 import SplitText from "@/utils/SplitText";
 import parse from 'html-react-parser';
+import { useRouter } from "next/navigation";
 
 export default function Post({
   title = "No Title",
@@ -16,6 +17,7 @@ export default function Post({
     category: "Category",
     date: "yyyy-mm-dd",
     tags: ["#hashtag1", "#hashtag2", "#hashtag3", "#hashtag4", "#hashtag1", "#hashtag2", "#hashtag3", "#hashtag4"],
+    path: "some/path"
   },
   className = "",
   articleClass = "",
@@ -26,6 +28,11 @@ export default function Post({
     { icon: <BiCategory />, value: meta.category, multiple: "Categories" },
     { icon: <FaHashtag />, value: meta.tags, multiple: "Tags" },
   ];
+  const router = useRouter();
+
+  function gotoPost() {
+    router.push("posts/" + meta.path)
+  }
 
   return (
     <Outline outlineColor="bg-border">
@@ -34,9 +41,9 @@ export default function Post({
           className={`w-full relative h-full flex items-stretch justify-center p-0.5 ${articleClass}`}
         >
           <section className="post-content flex flex-col gap-4 p-8 pb-4 w-[1145px] bg-subtle">
-            <h2 className="text-4xl font-heading prose text-text">{title}</h2>
+            <h2 className="text-4xl font-heading prose text-text cursor-pointer" onClick={gotoPost}>{title}</h2>
             <div className="text-lg font-body mb-3 text-muted">{parse(premise)}</div>
-            <ExtendedButton className="!w-[200px] flex items-center justify-evenly">
+            <ExtendedButton className="!w-[200px] flex items-center justify-evenly" onClick={gotoPost}>
               <div className="split-container">
                 <SplitText
                   text="Read More"

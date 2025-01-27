@@ -1,26 +1,27 @@
 import { readFile } from '@/lib/getPost';
 import { notFound } from 'next/navigation';
 
-export default function Post({ params }) {
-    const { post } = params;
-    const postPath = post.join('/');
-    let postData;
+export default async function Post({ params }) {
+  const { sort, post } = await params;
+  const sortTypes = ["categories", "archives", "tags", "posts"];
+  const postPath = post.join('/') + ".md";
+  let postData;
 
-    try {
-        postData = readFile(postPath);
-    } catch (error) {
-        return (
-            <>
-              <p>Post not found: {postPath}</p>
-            </>
-        );
-    }
+  if (!sortTypes.includes(sort)) {
+    notFound();
+  }
 
-    return (
-        <main>
-            <h1>{postData.title || 'Untitled'}</h1>
-            <p>Author: {postData.author || 'Unknown'}</p>
-            <p>Path: {postPath}</p>
-        </main>
-    );
+  try {
+    postData = readFile(postPath);
+  } catch (error) {
+    notFound();
+  }
+
+  return (
+    <main>
+      <h1>{postData.title || 'Untitled'}</h1>
+      <p>Author: {postData.author || 'Unknown'}</p>
+      <p>Path: {postPath}</p>
+    </main>
+  );
 }
