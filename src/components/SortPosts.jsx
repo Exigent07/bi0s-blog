@@ -13,7 +13,7 @@ export default function SortPosts({ categoryTree, posts, sort, onNavigation }) {
     return postsToRender.map((post, index) => (
       <Post
         key={index}
-        title={post.post}
+        title={post.title}
         premise={post.premise}
         meta={{
           author: post.author,
